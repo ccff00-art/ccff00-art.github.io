@@ -48,11 +48,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 10vw;
+            font-size: 8vw;
             font-weight: 900;
             text-transform: uppercase;
             color: #fff;
             transition: color 0.3s ease;
+            padding: 5%;
+            text-align: center;
         }
 
         .grid-item:hover .section-label {
@@ -126,7 +128,8 @@
         /* Responsive adjustments for mobile */
         @media (max-width: 768px) {
             .section-label {
-                font-size: 15vw;
+                font-size: 12vw;
+                padding: 0;
             }
             
             .section-content h2 {
@@ -148,10 +151,11 @@
             }
         }
         
-        /* Additional adjustments for very small screens */
+        /* Additional adjustments for mobile proportions */
         @media (max-width: 480px) {
             .section-label {
-                font-size: 18vw;
+                font-size: 14vw;
+                letter-spacing: -0.5vw;
             }
         }
     </style>
