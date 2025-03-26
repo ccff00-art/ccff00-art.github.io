@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#ccff00</title>
+    <title>Brutalist Grid</title>
     <style>
         * {
             margin: 0;
@@ -21,24 +21,29 @@
         }
         
         .top-banner {
-            width: 100%;
+            width: 90px;
+            height: 90px;
             background-color: #fff;
             text-align: center;
-            padding: 10px 0;
             position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 5;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
         }
         
         .banner-text {
             font-family: 'Georgia', serif;
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 900;
             color: #ccff00;
             text-shadow: 3px 3px 0 #000;
             -webkit-text-stroke: 0.5px #000;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             transform: scaleY(1.05);
         }
 
@@ -46,11 +51,12 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
+            grid-gap: 30px;
             width: 100vw;
-            height: calc(100vh - 44px);
+            height: 100vh;
             position: relative;
             z-index: 1;
-            margin-top: 44px;
+            background-color: #fff;
         }
 
         .grid-item {
@@ -210,7 +216,7 @@
 </head>
 <body>
     <div class="top-banner"><span class="banner-text">CF0</span></div>
-    <div class="grid-container" style="height: calc(100vh - 44px);">
+    <div class="grid-container">
         <div class="grid-item" data-section="art">
             <div class="section-label">ART</div>
         </div>
