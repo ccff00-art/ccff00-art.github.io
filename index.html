@@ -3,57 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+    <title>Brutalist Grid</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            border: 1px solid #000;
+            background-color: #ccff00;
+        }
+        
+        .grid-item:hover {
+            transform: scale(1.02);
+            z-index: 2;
+        }
+
+        .section-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 10vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        .grid-item:hover .section-label {
+            opacity: 1;
+        }
+
+        .section-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
             height: 100vh;
-            background-color: #f5f5f5;
-        }
-        .container {
+            background-color: #000;
+            z-index: 10;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 5vw;
+        }
+
+        .section-content h2 {
+            font-size: 15vw;
+            font-weight: 900;
+            margin-bottom: 5vh;
+            text-transform: uppercase;
+        }
+
+        .section-content p {
+            font-size: 3vw;
             max-width: 80%;
+            margin-bottom: 5vh;
         }
-        h1 {
-            color: #333;
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2vw;
         }
-        p {
-            color: #666;
+
+        .nav-button {
+            font-size: 5vw;
+            font-weight: 900;
+            padding: 1vh 2vw;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
         }
-        .success {
-            color: #4CAF50;
-            font-weight: bold;
+        
+        .nav-button:hover {
+            color: #ccff00;
+        }
+
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ccff00;
+            z-index: 9;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 768px) {
+            .section-label {
+                font-size: 15vw;
+            }
+            
+            .section-content h2 {
+                font-size: 20vw;
+            }
+            
+            .section-content p {
+                font-size: 5vw;
+            }
+            
+            .nav-button {
+                font-size: 8vw;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>My GitHub Pages Site</h1>
-        <p class="success">🎉 It's working! 🎉</p>
-        <p>This confirms that your GitHub Pages site is up and running correctly.</p>
-        <p>Current time: <span id="current-time"></span></p>
+    <div class="grid-container">
+        <div class="grid-item" data-section="art">
+            <div class="section-label">[ART]</div>
+        </div>
+        <div class="grid-item" data-section="shop">
+            <div class="section-label">[SHOP]</div>
+        </div>
+        <div class="grid-item" data-section="about">
+            <div class="section-label">[ABOUT]</div>
+        </div>
+        <div class="grid-item" data-section="more">
+            <div class="section-label">[MORE]</div>
+        </div>
+    </div>
+
+    <div class="transition-overlay"></div>
+
+    <div class="section-content" id="art-content">
+        <h2>[ART]</h2>
+        <p>This is the art section. Display your creative works here. This minimalist brutalist design puts all focus on your content.</p>
+        <div class="nav-buttons">
+            <button class="nav-button" data-goto="home">[HOME]</button>
+            <button class="nav-button" data-goto="shop">[SHOP]</button>
+            <button class="nav-button" data-goto="about">[ABOUT]</button>
+            <button class="nav-button" data-goto="more">[MORE]</button>
+        </div>
+    </div>
+
+    <div class="section-content" id="shop-content">
+        <h2>[SHOP]</h2>
+        <p>This is the shop section. List your products here with their bold, minimal descriptions.</p>
+        <div class="nav-buttons">
+            <button class="nav-button" data-goto="home">[HOME]</button>
+            <button class="nav-button" data-goto="art">[ART]</button>
+            <button class="nav-button" data-goto="about">[ABOUT]</button>
+            <button class="nav-button" data-goto="more">[MORE]</button>
+        </div>
+    </div>
+
+    <div class="section-content" id="about-content">
+        <h2>[ABOUT]</h2>
+        <p>This is the about section. Share your story, mission, or background information.</p>
+        <div class="nav-buttons">
+            <button class="nav-button" data-goto="home">[HOME]</button>
+            <button class="nav-button" data-goto="art">[ART]</button>
+            <button class="nav-button" data-goto="shop">[SHOP]</button>
+            <button class="nav-button" data-goto="more">[MORE]</button>
+        </div>
+    </div>
+
+    <div class="section-content" id="more-content">
+        <h2>[MORE]</h2>
+        <p>This is the more section. Include additional content, links, or contact information here.</p>
+        <div class="nav-buttons">
+            <button class="nav-button" data-goto="home">[HOME]</button>
+            <button class="nav-button" data-goto="art">[ART]</button>
+            <button class="nav-button" data-goto="shop">[SHOP]</button>
+            <button class="nav-button" data-goto="about">[ABOUT]</button>
+        </div>
     </div>
 
     <script>
-        // Display the current date and time
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('current-time').textContent = now.toLocaleString();
-        }
-        
-        // Update time immediately and then every second
-        updateTime();
-        setInterval(updateTime, 1000);
+        document.addEventListener('DOMContentLoaded', () => {
+            const gridItems = document.querySelectorAll('.grid-item');
+            const sections = document.querySelectorAll('.section-content');
+            const navButtons = document.querySelectorAll('.nav-button');
+            const overlay = document.querySelector('.transition-overlay');
+
+            // Function to show a section with transition
+            function showSection(sectionId) {
+                // Show overlay
+                overlay.style.opacity = '1';
+                
+                setTimeout(() => {
+                    // Hide all sections
+                    sections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show selected section
+                    const targetSection = document.getElementById(`${sectionId}-content`);
+                    if (targetSection) {
+                        targetSection.style.display = 'flex';
+                    }
+                    
+                    // Hide overlay
+                    setTimeout(() => {
+                        overlay.style.opacity = '0';
+                    }, 300);
+                }, 300);
+            }
+
+            // Grid item click handlers
+            gridItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const section = item.getAttribute('data-section');
+                    showSection(section);
+                });
+            });
+
+            // Navigation button click handlers
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const goto = button.getAttribute('data-goto');
+                    
+                    if (goto === 'home') {
+                        // Show overlay
+                        overlay.style.opacity = '1';
+                        
+                        setTimeout(() => {
+                            // Hide all sections
+                            sections.forEach(section => {
+                                section.style.display = 'none';
+                            });
+                            
+                            // Hide overlay
+                            setTimeout(() => {
+                                overlay.style.opacity = '0';
+                            }, 300);
+                        }, 300);
+                    } else {
+                        showSection(goto);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
