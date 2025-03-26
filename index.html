@@ -9,7 +9,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
             user-select: none;
         }
 
@@ -20,15 +19,38 @@
             background-color: #000;
             color: #fff;
         }
+        
+        .top-banner {
+            width: 100%;
+            background-color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 5;
+        }
+        
+        .banner-text {
+            font-family: 'Georgia', serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: #ccff00;
+            text-shadow: 3px 3px 0 #000;
+            -webkit-text-stroke: 0.5px #000;
+            letter-spacing: 2px;
+            transform: scaleY(1.05);
+        }
 
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
             width: 100vw;
-            height: 100vh;
+            height: calc(100vh - 44px);
             position: relative;
             z-index: 1;
+            margin-top: 44px;
         }
 
         .grid-item {
@@ -39,6 +61,7 @@
             background-color: #ccff00;
         }
 
+        /* Typography styles for all buttons - using Quadraat-inspired style */
         .section-label {
             position: absolute;
             top: 0;
@@ -49,17 +72,28 @@
             justify-content: center;
             align-items: center;
             font-size: 8vw;
+            font-family: 'Georgia', serif;
             font-weight: 900;
             text-transform: uppercase;
             color: #fff;
-            transition: color 0.3s ease;
+            letter-spacing: 0.2vw;
+            text-shadow: 3px 3px 0 #000;
+            -webkit-text-stroke: 0.5px #000;
+            transform: scaleY(1.05);
+            transition: color 0.2s ease, text-shadow 0.2s ease, -webkit-text-stroke 0.2s ease;
             padding: 5%;
             text-align: center;
         }
 
         .grid-item:hover .section-label {
-            color: #000;
+            color: #a3cc00; /* 20% darker than #ccff00 */
+            text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.6);
+            transform: scaleY(1.05);
+            -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.5);
         }
+        
+        /* Typography styles for each button - inspired by Quadraat and RST Thermal */
+
 
         .section-content {
             position: fixed;
@@ -78,10 +112,14 @@
         }
 
         .section-content h2 {
+            font-family: 'Georgia', serif;
             font-size: 15vw;
             font-weight: 900;
             margin-bottom: 5vh;
             text-transform: uppercase;
+            letter-spacing: 0.2vw;
+            text-shadow: 3px 3px 0 #000;
+            transform: scaleY(1.05);
         }
 
         .section-content p {
@@ -98,6 +136,7 @@
         }
 
         .nav-button {
+            font-family: 'Georgia', serif;
             font-size: 5vw;
             font-weight: 900;
             padding: 1vh 2vw;
@@ -106,10 +145,15 @@
             color: #fff;
             cursor: pointer;
             text-transform: uppercase;
+            letter-spacing: 0.2vw;
+            text-shadow: 2px 2px 0 #000;
+            transform: scaleY(1.05);
+            transition: color 0.2s ease, text-shadow 0.2s ease;
         }
         
         .nav-button:hover {
-            color: #ccff00;
+            color: #a3cc00; /* 20% darker than #ccff00 */
+            text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.6);
         }
 
         .transition-overlay {
@@ -127,9 +171,14 @@
 
         /* Responsive adjustments for mobile */
         @media (max-width: 768px) {
+            .banner-text {
+                font-size: 28px;
+            }
+            
             .section-label {
                 font-size: 12vw;
                 padding: 0;
+                text-shadow: 2px 2px 0 #000;
             }
             
             .section-content h2 {
@@ -155,70 +204,71 @@
         @media (max-width: 480px) {
             .section-label {
                 font-size: 14vw;
-                letter-spacing: -0.5vw;
+                -webkit-text-stroke: 0.5px #000;
             }
         }
     </style>
 </head>
 <body>
+    <div class="top-banner"><span class="banner-text">CF0</span></div>
     <div class="grid-container">
         <div class="grid-item" data-section="art">
-            <div class="section-label">[ART]</div>
+            <div class="section-label">ART</div>
         </div>
         <div class="grid-item" data-section="shop">
-            <div class="section-label">[SHOP]</div>
+            <div class="section-label">SHOP</div>
         </div>
         <div class="grid-item" data-section="about">
-            <div class="section-label">[ABOUT]</div>
+            <div class="section-label">ABOUT</div>
         </div>
         <div class="grid-item" data-section="more">
-            <div class="section-label">[MORE]</div>
+            <div class="section-label">MORE</div>
         </div>
     </div>
 
     <div class="transition-overlay"></div>
 
     <div class="section-content" id="art-content">
-        <h2>[ART]</h2>
+        <h2>ART</h2>
         <p>This is the art section. Display your creative works here. This minimalist brutalist design puts all focus on your content.</p>
         <div class="nav-buttons">
-            <button class="nav-button" data-goto="home">[HOME]</button>
-            <button class="nav-button" data-goto="shop">[SHOP]</button>
-            <button class="nav-button" data-goto="about">[ABOUT]</button>
-            <button class="nav-button" data-goto="more">[MORE]</button>
+            <button class="nav-button" data-goto="home">HOME</button>
+            <button class="nav-button" data-goto="shop">SHOP</button>
+            <button class="nav-button" data-goto="about">ABOUT</button>
+            <button class="nav-button" data-goto="more">MORE</button>
         </div>
     </div>
 
     <div class="section-content" id="shop-content">
-        <h2>[SHOP]</h2>
+        <h2>SHOP</h2>
         <p>This is the shop section. List your products here with their bold, minimal descriptions.</p>
         <div class="nav-buttons">
-            <button class="nav-button" data-goto="home">[HOME]</button>
-            <button class="nav-button" data-goto="art">[ART]</button>
-            <button class="nav-button" data-goto="about">[ABOUT]</button>
-            <button class="nav-button" data-goto="more">[MORE]</button>
+            <button class="nav-button" data-goto="home">HOME</button>
+            <button class="nav-button" data-goto="art">ART</button>
+            <button class="nav-button" data-goto="about">ABOUT</button>
+            <button class="nav-button" data-goto="more">MORE</button>
         </div>
     </div>
 
     <div class="section-content" id="about-content">
-        <h2>[ABOUT]</h2>
+        <h2>ABOUT</h2>
         <p>This is the about section. Share your story, mission, or background information.</p>
         <div class="nav-buttons">
-            <button class="nav-button" data-goto="home">[HOME]</button>
-            <button class="nav-button" data-goto="art">[ART]</button>
-            <button class="nav-button" data-goto="shop">[SHOP]</button>
-            <button class="nav-button" data-goto="more">[MORE]</button>
+            <button class="nav-button" data-goto="home">HOME</button>
+            <button class="nav-button" data-goto="art">ART</button>
+            <button class="nav-button" data-goto="shop">SHOP</button>
+            <button class="nav-button" data-goto="more">MORE</button>
         </div>
     </div>
 
     <div class="section-content" id="more-content">
-        <h2>[MORE]</h2>
+        <h2>MORE</h2>
         <p>This is the more section. Include additional content, links, or contact information here.</p>
         <div class="nav-buttons">
-            <button class="nav-button" data-goto="home">[HOME]</button>
-            <button class="nav-button" data-goto="art">[ART]</button>
-            <button class="nav-button" data-goto="shop">[SHOP]</button>
-            <button class="nav-button" data-goto="about">[ABOUT]</button>
+            <button class="nav-button" data-goto="home">HOME</button>
+            <button class="nav-button" data-goto="art">ART</button>
+            <button class="nav-button" data-goto="shop">SHOP</button>
+            <button class="nav-button" data-goto="about">ABOUT</button>
         </div>
     </div>
 
